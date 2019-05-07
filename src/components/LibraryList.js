@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { ListItem } from './ListItem';
 
 class LibraryList extends Component {
+    renderItem = (lib) => {
+        return <ListItem data={lib} />
+    };
+
     render() {
         console.log(this.props.libraries);
         return(
-            <View />
+            <FlatList
+                data={this.props.libraries}
+                renderItem={this.renderItem}
+                keyExtractor={lib => lib.id}
+            />
         )
     }
 }
